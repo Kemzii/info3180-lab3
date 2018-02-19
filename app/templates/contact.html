@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block css %}
+
+<link href="{{ url_for('static', filename='css/contact.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<div class="head">
+           
+<h1> Contact Form</h1>
+<hr>
+<p> Fill in this form to contact the site owners.</p>
+</div>
+
+<div class="container">
+  <form method="POST" action="{{ url_for('contact') }}">
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+    
+    {{ form.csrf_token }}
+    {{ form.name.label (class_="title")  }} <p> Please enter your full name </p>{{ form.name(size=20) }}
+    <br>
+    <br>
+    {{ form.email.label (class_="title") }}
+    <p> Please enter your email address</p>
+    {{ form.email }}
+    <br>
+    <br>
+    {{ form.subject.label (class_="title") }}
+    <p> Please enter the subject of your message</p>
+    {{ form.subject }}
+    <br>
+    <br>
+    {{ form.message.label (class_="title") }}
+    <p> Please enter the message you would like to send</p>
+    {{ form.message }}
+    <br>
+    <br>
+    <input type="submit" value="Submit" class='button'/>
+   
+  </form>
+
+{% endblock %}

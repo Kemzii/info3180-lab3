@@ -10,6 +10,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, flash
 from forms import MyForm
 
+
 ###
 # Routing for your application.
 ###
@@ -64,10 +65,8 @@ def contact():
         mail.send(msg)
         
         return redirect(url_for('home'))
-        flash('Mail Sent!')
-        return str(get_flashed_messages())
             
-    return render_template('contact.html', form=form)
+        return redirect(url_for('home.h'))
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")
